@@ -1,0 +1,40 @@
+{
+  "name": "cts2Api",
+  "version": "0.0.1",
+  "description": "Live API Documentation and Browsing",
+  "homepage": "https://wiki.nci.nih.gov/display/LexEVS/LexEVS+6.x+CTS2",
+  "keywords": [
+    "livedocs",
+    "cts2Api",
+    "documentation",
+    "api"
+  ],
+  "author": "Mashery, Inc. <nmansilla@mashery.com>",
+
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mashery/iodocs.git"
+  },
+  "dependencies": {
+    "clone": "0.1.1",
+    "connect-redis": "1.0.6",
+    "express": "3.3.1",
+    "jade": "0.32.0",
+    "node-json-minify": ">= 0.1.3-a",
+
+    
+    "querystring": "0.1.0",
+    "supervisor": ">= 0.5.x",
+    "yargs": ">= 1.2.1"
+  },
+  "devDependencies": {},
+  "main": "index",
+  "engines": {
+    "node": ">= 0.4.0",
+    "npm": ">= 1.1.49"
+  },
+  "scripts": {
+    "start": "node_modules/.bin/supervisor -e 'js|json' app",
+    "startwin": "supervisor -e 'js' app"
+  }
+}

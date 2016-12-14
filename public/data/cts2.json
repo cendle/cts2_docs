@@ -1,0 +1,745 @@
+
+{
+    "basePath": "http://lexevscts2.nci.nih.gov",
+    "name": "LexEVS CTS2 6.4 API Documentation (lexevscts2.nci.nih.gov/lexevscts2)",
+    "protocol": "rest",
+    "publicPath": "/lexevscts2",
+    "version": "1.0",
+    "resources": {
+
+       "Service Metadata": {
+            "methods": {
+
+                "GetCTS2ServiceMetadataaaa": {
+                    "description": "Get CTS2 Service Metadata",
+                    "httpMethod": "GET",
+                    "name": "Get CTS2 Service Metadata",
+                    "parameters": {},
+                    "path": "/service"    
+                }
+            }
+        },
+
+        "Entities": {
+            "methods": {
+
+                "SearchEntities": {
+                    "description": "Search All CTS2 Entities",
+                    "httpMethod": "GET",
+                    "name": "Search Entities",
+                    "parameters": {
+                        "matchvalue": {
+                            "default": "",
+                            "description": "query",
+                            "location": "path",
+                            "required": false,
+                            "type": "string"
+                        },
+                        "filtercomponent": {
+                            "title":"filtercomponent",
+                            "required":false,
+                            "default":"",
+                            "type":"string",
+                            "description":"Filter search on resourceSynopsis (description) or resourceName",
+                            "enum": ["resourceSynopsis", "resourceName"]
+                        },
+                        "matchalgorithm": {
+                            "title":"matchalgorithm",
+                            "required":false,
+                            "default":"",
+                            "type":"string",
+                            "description":"Match Algorithm",
+                            "enum": ["contains", "luceneQuery", "exactMatch"]
+                        }
+                    },
+                    "path": "/entities"    
+                },
+
+                "countEntities": {
+                    "description": "Count All CTS2 Entities",
+                    "httpMethod": "HEAD",
+                    "name": "Count Entities",
+                    "parameters": {
+                        "matchvalue": {
+                            "default": "",
+                            "description": "query",
+                            "location": "path",
+                            "required": false,
+                            "type": "string"
+                        },
+                        "filtercomponent": {
+                            "title":"filtercomponent",
+                            "required":false,
+                            "default":"",
+                            "type":"string",
+                            "description":"Filter search on resourceSynopsis (description) or resourceName",
+                            "enum": ["resourceSynopsis", "resourceName"]
+                        },
+                        "matchalgorithm": {
+                            "title":"matchalgorithm",
+                            "required":false,
+                            "default":"",
+                            "type":"string",
+                            "description":"Algorithm type",
+                            "enum": ["contains", "luceneQuery", "exactMatch"]
+                        }
+                    },
+                    "path": "/entities" 
+                },
+
+                "ReadEntityByURI": {
+                    "description": "Read an Entity by URI",
+                    "httpMethod": "GET",
+                    "name": "Read an Entity by URI",
+                    "parameters": {
+                        "uri": {
+                            "default": "MedDRA:10000185",
+                            "description": "Entity URI",
+                            "location": "path",
+                            "required": true,
+                            "type": "string"
+                        }
+                    },
+                    "path": "/entitybyuri"    
+                },
+
+                "ReadEntityByID": {
+                    "description": "Read an Entity by ID",
+                    "httpMethod": "GET",
+                    "name": "Read an Entity by ID",
+                    "parameters": {
+                        "entityid": {
+                            "default": "MedDRA:10000185",
+                            "description": "Entity ID",
+                            "location": "path",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "active": {
+                            "title":"active",
+                            "required":false,
+                            "default":"",
+                            "type":"string",
+                            "description":"Query Active or All Entities",
+                            "enum": ["ACTIVE_ONLY", "ACTIVE_AND_INACTIVE"]
+                        }
+                    },
+                    "path": "/entity/{entityid}"    
+                }
+            }
+        },
+        
+        "Code System Versions": {
+            "methods": {
+
+                "SearchCodeSystemVersions": {
+                    "description": "Search Code System Versions",
+                    "httpMethod": "GET",
+                    "name": "Search Code System Versions",
+                    "parameters": {
+                        "matchvalue": {
+                            "default": "",
+                            "description": "query",
+                            "location": "path",
+                            "required": false,
+                            "type": "string"
+                        },
+                        "filtercomponent": {
+                            "title":"filtercomponent",
+                            "required":false,
+                            "default":"",
+                            "type":"string",
+                            "description":"Filter search on resourceSynopsis (description), resourceName, about or version tag",
+                            "enum": ["resourceSynopsis", "resourceName", "about", "tag"]
+                        },
+                        "maxtoreturn": {
+                            "title":"maxtoreturn",
+                            "required":false,
+                            "default": 50,
+                            "type":"integer",
+                            "description":"Number of results to return"
+                        },
+                        "matchalgorithm": {
+                            "title":"matchalgorithm",
+                            "required":false,
+                            "default":"",
+                            "type":"string",
+                            "description":"Match Algorithm",
+                            "enum": ["contains", "startsWith", "exactMatch"]
+                        },
+                        "active": {
+                            "title":"active",
+                            "required":false,
+                            "default":"",
+                            "type":"string",
+                            "description":"Query Active or All Entities",
+                            "enum": ["ACTIVE_ONLY", "ACTIVE_AND_INACTIVE"]
+                        }
+                        
+                    },
+                    "path": "/codesystemversions"    
+                },
+
+                "ReadCodeSystemVersionsByVersionId": {
+                    "description": "Read a Code System Version by Version ID",
+                    "httpMethod": "GET",
+                    "name": "Read a Code System Version by Version ID",
+                    "parameters": {
+                        "codesystem": {
+                            "default": "MedDRA",
+                            "description": "codeSystem",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "version": {
+                            "title":"version",
+                            "required":true,
+                            "default":"17.1",
+                            "type":"string",
+                            "description":"version"
+                        }
+                    },
+                    "path": "/codesystem/{codesystem}/version/{version}"    
+               
+                },
+
+                "SearchEntitiesOfACodeSystemVersion": {
+                    "description": "Search Entities of a Code System Version",
+                    "httpMethod": "GET",
+                    "name": "Search Entities of a Code System Version",
+                    "parameters": {
+                        "codesystem": {
+                            "default": "MedDRA",
+                            "description": "codeSystem",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "version": {
+                            "title":"version",
+                            "required":true,
+                            "default":"17.1",
+                            "type":"string",
+                            "description":"version"
+                        },
+                        "matchvalue": {
+                            "default": "",
+                            "description": "query",
+                            "location": "path",
+                            "required": false,
+                            "type": "string"
+                        },
+                        "filtercomponent": {
+                            "title":"filtercomponent",
+                            "required":false,
+                            "default":"",
+                            "type":"string",
+                            "description":"Filter search on resourceSynopsis (description), resourceName or resourceName (Code)",
+                            "enum": ["resourceSynopsis", "resourceName"]
+                        },
+                        "maxtoreturn": {
+                            "title":"maxtoreturn",
+                            "required":false,
+                            "default": 50,
+                            "type":"integer",
+                            "description":"Number of results to return"
+                        },
+                        "matchalgorithm": {
+                            "title":"matchalgorithm",
+                            "required":false,
+                            "default":"",
+                            "type":"string",
+                            "description":"Match Algorithm",
+                            "enum": ["contains", "luceneQuery", "startsWith", "exactMatch"]
+                        },
+                        "active": {
+                            "title":"active",
+                            "required":false,
+                            "default":"",
+                            "type":"string",
+                            "description":"Query Active or All Entities",
+                            "enum": ["ACTIVE_ONLY", "ACTIVE_AND_INACTIVE"]
+                        }
+                    },
+                    "path": "/codesystem/{codesystem}/version/{version}/entities"    
+               
+                },
+
+                "ReadAnEntityOfACodeSystemVersionByID": {
+                    "description": "Read an Entity of a Code System Version by ID",
+                    "httpMethod": "GET",
+                    "name": "Read an Entity of a Code System Version by ID",
+                    "parameters": {
+                        "codesystem": {
+                            "default": "MedDRA",
+                            "description": "codeSystem",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "version": {
+                            "title":"version",
+                            "required":true,
+                            "default":"17.1",
+                            "type":"string",
+                            "description":"version"
+                        },
+                        "entityid": {
+                            "default": "MedDRA:10000185",
+                            "description": "Entity ID",
+                            "required": true,
+                            "type": "string"
+                        }
+                    },
+                    "path": "/codesystem/{codesystem}/version/{version}/entity/{entityid}"    
+               
+                }
+            }
+        },
+
+        "Associations": {
+            "methods": {
+
+                "GetChildrenAssociations": {
+                    "description": "Get 'children' associations",
+                    "httpMethod": "GET",
+                    "name": "Get 'children' associations",
+                    "parameters": {
+                        "codesystem": {
+                            "default": "MedDRA",
+                            "description": "codeSystem",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "version": {
+                            "title":"version",
+                            "required":true,
+                            "default":"17.1",
+                            "type":"string",
+                            "description":"version"
+                        },
+                        "entityid": {
+                            "default": "MedDRA:10000185",
+                            "description": "Entity ID",
+                            "required": true,
+                            "type": "string"
+                        }
+                    },
+                    "path": "/codesystem/{codesystem}/version/{version}/entity/{entityid}/children"    
+               
+                },
+
+                "GetSubjectOfAssociations": {
+                    "description": "Get 'subjectOf' associations",
+                    "httpMethod": "GET",
+                    "name": "Get 'subjectOf' associations",
+                    "parameters": {
+                        "codesystem": {
+                            "default": "MedDRA",
+                            "description": "codeSystem",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "version": {
+                            "title":"version",
+                            "required":true,
+                            "default":"17.1",
+                            "type":"string",
+                            "description":"version"
+                        },
+                        "entityid": {
+                            "default": "MedDRA:10061400",
+                            "description": "Entity ID",
+                            "required": true,
+                            "type": "string"
+                        }
+                    },
+                    "path": "/codesystem/{codesystem}/version/{version}/entity/{entityid}/subjectof"    
+               
+                },
+
+                "GetTargetOfAssociations": {
+                    "description": "Get 'targetOf' associations",
+                    "httpMethod": "GET",
+                    "name": "Get 'targetOf' associations",
+                    "parameters": {
+                        "codesystem": {
+                            "default": "MedDRA",
+                            "description": "codeSystem",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "version": {
+                            "title":"version",
+                            "required":true,
+                            "default":"17.1",
+                            "type":"string",
+                            "description":"version"
+                        },
+                        "entityid": {
+                            "default": "MedDRA:10061400",
+                            "description": "Entity ID",
+                            "required": true,
+                            "type": "string"
+                        }
+                    },
+                    "path": "/codesystem/{codesystem}/version/{version}/entity/{entityid}/targetof"    
+               
+                }
+            }
+        },
+
+        "Value Sets": {
+            "methods": {
+
+                "SearchValueSets": {
+                    "description": "Search Value Sets",
+                    "httpMethod": "GET",
+                    "name": "Search Value Sets",
+                    "parameters": {
+                        "matchvalue": {
+                            "default": "",
+                            "description": "query",
+                            "location": "path",
+                            "required": false,
+                            "type": "string"
+                        },
+                        "filtercomponent": {
+                            "title":"filtercomponent",
+                            "required":false,
+                            "default":"",
+                            "type":"string",
+                            "description":"Filter search on resourceSynopsis (description), resourceName or resourceName (Code)",
+                            "enum": ["resourceSynopsis", "resourceName"]
+                        },
+                        "maxtoreturn": {
+                            "title":"maxtoreturn",
+                            "required":false,
+                            "default": 50,
+                            "type":"integer",
+                            "description":"Number of results to return"
+                        },
+                        "matchalgorithm": {
+                            "title":"matchalgorithm",
+                            "required":false,
+                            "default":"",
+                            "type":"string",
+                            "description":"Match Algorithm",
+                            "enum": ["contains", "exactMatch"]
+                        },
+                        "active": {
+                            "title":"active",
+                            "required":false,
+                            "default":"",
+                            "type":"string",
+                            "description":"Query Active or All Entities",
+                            "enum": ["ACTIVE_ONLY", "ACTIVE_AND_INACTIVE"]
+                        }
+                    },
+
+                    "path": "/valuesets"    
+               
+                },
+
+                "ReadValueSets": {
+                    "description": "Read the specified Value Set",
+                    "httpMethod": "GET",
+                    "name": "Read the specified Value Set",
+                    "parameters": {
+                        "valueset": {
+                            "default": "CDISC%20ADaM%20Terminology",
+                            "description": "CodeSystem",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "active": {
+                            "title":"active",
+                            "required":false,
+                            "default":"",
+                            "type":"string",
+                            "description":"Query Active or All Entities",
+                            "enum": ["ACTIVE_ONLY", "ACTIVE_AND_INACTIVE"]
+                        }
+                    },
+                    "path": "/valueset/{valueset}"
+                },
+
+                "ReadValueSetDefinitionId": {
+                    "description": "Read a Value Set Definition ID",
+                    "httpMethod": "GET",
+                    "name": "Read a Value Set Definition ID",
+                    "parameters": {
+                        "valueset": {
+                            "default": "CDISC%20ADaM%20Terminology",
+                            "description": "CodeSystem",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "definition": {
+                            "default": "5f51c37b",
+                            "description": "Version",
+                            "required": true,
+                            "type": "string"
+                        }
+                    },
+
+                    "path": "/valueset/{valueset}/definition/{definition}"    
+               
+                },
+
+                "ResolveValueSetDefinitionById": {
+                    "description": "Resolve a Value Set Definition by ID",
+                    "httpMethod": "GET",
+                    "name": "Resolve a Value Set Definition by ID",
+                    "parameters": {
+                        "valueset": {
+                            "default": "CDISC%20ADaM%20Terminology",
+                            "description": "CodeSystem",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "definition": {
+                            "default": "5f51c37b",
+                            "description": "Version",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "maxtoreturn": {
+                            "title":"maxtoreturn",
+                            "required":false,
+                            "default": 50,
+                            "type":"integer",
+                            "description":"Number of results to return"
+                        }
+                    },
+
+                    "path": "/valueset/{valueset}/definition/{definition}/resolution"    
+               
+                },
+
+                "SearchResolvedValueSetDefinitions": {
+                    "description": "Search All Pre-Resolved CTS2 Value Set Definitions.",
+                    "httpMethod": "GET",
+                    "name": "Search All Pre-Resolved CTS2 Value Set Definitions.",
+                    "parameters": {
+                        "matchvalue": {
+                            "default": "",
+                            "description": "query",
+                            "location": "path",
+                            "required": false,
+                            "type": "string"
+                        },
+                        "filtercomponent": {
+                            "title":"filtercomponent",
+                            "required":false,
+                            "default":"",
+                            "type":"string",
+                            "description":"Filter search on resourceSynopsis (description) or resourceName",
+                            "enum": ["resourceSynopsis", "resourceName"]
+                        },
+                        "matchalgorithm": {
+                            "title":"matchalgorithm",
+                            "required":false,
+                            "default":"",
+                            "type":"string",
+                            "description":"Match Algorithm",
+                            "enum": ["contains", "startsWith", "exactMatch"]
+                        },
+                        "maxtoreturn": {
+                            "title":"maxtoreturn",
+                            "required":false,
+                            "default": 50,
+                            "type":"integer",
+                            "description":"Number of results to return"
+                        }
+                    },
+
+                    "path": "/resolvedvaluesets"
+               
+                }
+            }
+        },
+
+        "Maps": {
+            "methods": {
+
+                "SearchMapVersionSummaries": {
+                    "description": "Search Map Version Summaries",
+                    "httpMethod": "GET",
+                    "name": "Search Map Version Summaries",
+                    "parameters": {
+                        "matchvalue": {
+                            "default": "",
+                            "description": "query",
+                            "location": "path",
+                            "required": false,
+                            "type": "string"
+                        },
+                        "filtercomponent": {
+                            "title":"filtercomponent",
+                            "required":false,
+                            "default":"",
+                            "type":"string",
+                            "description":"Filter search on resourceSynopsis (description) or resourceName",
+                            "enum": ["resourceSynopsis", "resourceName"]
+                        },
+                        "entitiesmaprole": {
+                            "title":"entitiesmaprole",
+                            "required":false,
+                            "default":"",
+                            "type":"string",
+                            "description":"Map Roles",
+                            "enum": ["MAP_FROM_ROLE", "MAP_TO_ROLE", "BOTH_MAP_ROLES"]
+                        },
+                        "maxtoreturn": {
+                            "title":"maxtoreturn",
+                            "required":false,
+                            "default": 50,
+                            "type":"integer",
+                            "description":"Number of results to return"
+                        }
+                    },
+
+                    "path": "/mapversions"    
+                },
+
+                "ReadAMapByMapID": {
+                    "description": "Read a Map by Map ID",
+                    "httpMethod": "GET",
+                    "name": "Read a Map by Map ID",
+                    "parameters": {
+                        "map": {
+                            "default": "MA_to_NCIt_Mapping",
+                            "description": "map",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "maxtoreturn": {
+                            "title":"maxtoreturn",
+                            "required":false,
+                            "default": 50,
+                            "type":"integer",
+                            "description":"Number of results to return"
+                        }
+                    },
+
+                    "path": "/map/{map}"    
+                },
+
+                "ReadMapVersionsOfMapByMapID": {
+                    "description": "Read Map versions of Map by Map ID",
+                    "httpMethod": "GET",
+                    "name": "Read Map versions of Map by Map ID",
+                    "parameters": {
+                        "map": {
+                            "default": "MA_to_NCIt_Mapping",
+                            "description": "map",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "maxtoreturn": {
+                            "title":"maxtoreturn",
+                            "required":false,
+                            "default": 50,
+                            "type":"integer",
+                            "description":"Number of results to return"
+                        }
+                    },
+
+                    "path": "/map/{map}/versions"    
+                },
+
+                "ReadSpecificVersionOfMapByMapID": {
+                    "description": "Read Specific Version of a Map by Map ID",
+                    "httpMethod": "GET",
+                    "name": "Read Specific Version of a Map by Map ID",
+                    "parameters": {
+                        "map": {
+                            "default": "MA_to_NCIt_Mapping",
+                            "description": "map",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "version": {
+                            "default": "MA_to_NCIt_Mapping-1.0",
+                            "description": "map version",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "maxtoreturn": {
+                            "title":"maxtoreturn",
+                            "required":false,
+                            "default": 50,
+                            "type":"integer",
+                            "description":"Number of results to return"
+                        }
+                    },
+
+                    "path": "/map/{map}/version/{version}"    
+                },
+
+                "ReadEntriesOfSpecificVersionOfMapByMapID": {
+                    "description": "Read Entries of a Specific Version of a Map by Map ID",
+                    "httpMethod": "GET",
+                    "name": "Read Entries of a Specific Version of a Map by Map ID",
+                    "parameters": {
+                        "map": {
+                            "default": "MA_to_NCIt_Mapping",
+                            "description": "map",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "version": {
+                            "default": "MA_to_NCIt_Mapping-1.0",
+                            "description": "map version",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "maxtoreturn": {
+                            "title":"maxtoreturn",
+                            "required":false,
+                            "default": 50,
+                            "type":"integer",
+                            "description":"Number of results to return"
+                        }
+                    },
+
+                    "path": "/map/{map}/version/{version}/entries"    
+                },
+
+                "RestrictEntryOfSpecificVersionOfMapByMapID": {
+                    "description": "Restrict Entry of a Specific Version of a Map by Map ID",
+                    "httpMethod": "GET",
+                    "name": "Restrict Entry of a Specific Version of a Map by Map ID",
+                    "parameters": {
+                        "map": {
+                            "default": "MA_to_NCIt_Mapping",
+                            "description": "map",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "version": {
+                            "default": "MA_to_NCIt_Mapping-1.0",
+                            "description": "map version",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "mapfrom": {
+                            "default": "MA:MA:0000003",
+                            "description": "map from",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "maxtoreturn": {
+                            "title":"maxtoreturn",
+                            "required":false,
+                            "default": 50,
+                            "type":"integer",
+                            "description":"Number of results to return"
+                        }
+                    },
+
+                    "path": "/map/{map}/version/{version}/entry/{mapfrom}"    
+                }        
+            }
+        }
+    }
+}
